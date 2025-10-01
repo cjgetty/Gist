@@ -1,0 +1,81 @@
+# cursor-backend-bootstrap.txt — Cursor One-Shot Prompt for Gist API
+
+Create a NestJS backend project called **gist-api** following the PRD and roadmap.
+
+## Requirements
+
+### Architecture
+- Language: **TypeScript**
+- Framework: **NestJS**
+- ORM: **Prisma** (PostgreSQL)
+- API style: REST (OpenAPI 3.1) with typed DTOs
+- Modules:
+  - Auth
+  - Users
+  - Profiles
+  - Communities
+  - Posts
+  - Comments
+  - Votes
+  - Reports
+  - Moderation
+
+### Auth
+- Email + passwordless login (passkeys optional placeholder).
+- Apple and Google OAuth stubs.
+- JWT (short-lived access, rotating refresh).
+- Tokens stored securely (httpOnly cookies or headers).
+
+### Models (Prisma schema)
+- User(id, email?, createdAt, deletedAt)
+- Profile(userId FK, displayName, avatarURL, bio, privacyLevel)
+- Community(id, name, slug, rulesJSON, isNSFW, createdBy)
+- Membership(userId, communityId, role)
+- Post(id, communityId, authorUserId?, identityMode ENUM, title, bodyMD, media[], score, createdAt)
+- Comment(id, postId, parentId?, authorUserId?, identityMode, bodyMD, score, createdAt)
+- Vote(userId, targetType, targetId, value)
+- Report(id, targetType, targetId, reason, reporterUserId, status, createdAt)
+- ModerationAction(id, targetType, targetId, actorUserId, action, notes, createdAt)
+
+### Services
+- Communities: create, join/leave, trending, rules.
+- Posts: CRUD, vote, search.
+- Comments: threaded tree, lazy fetch.
+- Moderation: report queue, automod stubs.
+
+### Security & Privacy
+- Input validation with `class-validator` or `zod`.
+- Sanitization for HTML/Markdown input.
+- Media uploads via pre-signed S3 URLs; server strips EXIF.
+- Rate limiting per IP/user.
+- Audit logs for moderation.
+
+### Search
+- Integrate **Meilisearch** or **Algolia** for posts/communities.
+- Sync jobs to index content.
+
+### Infra
+- Docker setup (Dockerfile + docker-compose).
+- Deployment ready for Render/Fly.io/AWS.
+- Env-based config management.
+
+### Observability
+- Structured logging (pino/winston).
+- Error tracking with Sentry integration.
+- OpenTelemetry traces for API calls.
+
+### Testing
+- Unit tests for services.
+- Integration tests for API routes.
+- Seed script for dev database.
+
+---
+
+## Deliverables
+1. NestJS project scaffold with all modules.
+2. Prisma schema + migrations + seed data.
+3. REST endpoints for Auth, Users, Communities, Posts, Comments, Votes, Reports, Moderation.
+4. OpenAPI (Swagger) docs auto-generated.
+5. Dockerfile + docker-compose for local dev.
+6. Test suite with Jest.
+7. README.md with setup instructions.

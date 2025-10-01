@@ -1,0 +1,48 @@
+# windsorf-bootstrap.txt — Windsurf One-Shot Prompt for Gist
+
+Create a SwiftUI iOS app called **Gist** following the `.windsurf-rules.md`.
+
+## Requirements
+
+### Architecture
+- SwiftUI + MVVM, feature-based modules: Feed, Discover, Composer, Thread, Community, Profile, Moderation.
+- App entry: `GistApp` with `TabView` (Home, Discover, Create, Inbox, Profile).
+- Networking: `NetworkClient` with async/await, mock mode for previews/tests.
+- Models: `User`, `Profile`, `Community`, `Post`, `Comment`, `Vote`.
+- Services: `AuthService`, `FeedService`, `PostService`, `CommunityService`, `ModerationService`.
+
+### Views & UX
+- **Feed**: list of posts, swipe actions (vote/reply/save/share), haptic feedback.
+- **Discover**: trending posts, communities, search bar.
+- **Composer**: create post (text/link/image/video), Markdown, inline preview, identity toggle (Public/Pseudonymous/Anonymous).
+- **Thread**: nested comments, collapsible, lazy tree rendering.
+- **Community**: join/leave, rules sidebar, pinned posts.
+- **Profile**: avatar, bio, privacy toggles, history visibility.
+- **Moderation**: simple report queue, report/block/filter.
+
+### Accessibility
+- All views tested with Dynamic Type up to AX6.
+- VoiceOver labels, values, traits for interactive elements.
+- ALT text input required for images in Composer.
+- Haptics & motion respect system toggles.
+
+### Privacy & Safety
+- One-tap account & data deletion stub in Settings.
+- EXIF stripping hook for uploads (placeholder in client).
+- Identity toggle visible in composer.
+
+### Testing
+- Unit tests for services (mocked networking).
+- Snapshot tests for post/comment cards.
+
+### Previews
+- Each View includes `#Preview` with sample data.
+
+---
+
+## Deliverables
+1. SwiftUI project scaffold with folders by feature.
+2. Placeholder views and ViewModels for all modules.
+3. Mock data providers for previews/tests.
+4. Test targets with sample unit and snapshot tests.
+5. README.md in root with project overview.
