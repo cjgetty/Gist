@@ -10,6 +10,23 @@
 		5A2CC59F2E8C65610043FDF2 /* GistCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2CC5902E8C65610043FDF2 /* GistCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A2CC5A02E8C65610043FDF2 /* GistCore.framework in Frameworks (Tests) */ = {isa = PBXBuildFile; fileRef = 5A2CC5902E8C65610043FDF2 /* GistCore.framework */; };
 		5A2CC5B22E8C65610043FDF2 /* SnapshotTesting in Frameworks (Tests) */ = {isa = PBXBuildFile; productRef = 5A2CC5B12E8C65610043FDF2 /* SnapshotTesting */; };
+		5AB001000000000000000001 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000001 /* MockData.swift */; };
+		5AB001000000000000000002 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000002 /* Comment.swift */; };
+		5AB001000000000000000003 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000003 /* Community.swift */; };
+		5AB001000000000000000004 /* IdentityMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000004 /* IdentityMode.swift */; };
+		5AB001000000000000000005 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000005 /* Post.swift */; };
+		5AB001000000000000000006 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000006 /* Profile.swift */; };
+		5AB001000000000000000007 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000007 /* User.swift */; };
+		5AB001000000000000000008 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000008 /* Vote.swift */; };
+		5AB001000000000000000009 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000009 /* NetworkClient.swift */; };
+		5AB00100000000000000000A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000A /* AuthService.swift */; };
+		5AB00100000000000000000B /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000B /* CommunityService.swift */; };
+		5AB00100000000000000000C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000C /* FeedService.swift */; };
+		5AB00100000000000000000D /* ModerationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000D /* ModerationService.swift */; };
+		5AB00100000000000000000E /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000E /* PostService.swift */; };
+		5AB00100000000000000000F /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF00100000000000000000F /* EnvironmentConfig.swift */; };
+		5AB001000000000000000010 /* HapticFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000010 /* HapticFeedbackService.swift */; };
+		5AB001000000000000000011 /* MediaPrivacyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF001000000000000000011 /* MediaPrivacyUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +72,23 @@
 		5A2CC5802E8C65610043FDF2 /* GistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2CC5902E8C65610043FDF2 /* GistCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GistCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2CC5C12E8C65610043FDF2 /* GistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AF001000000000000000001 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Mocks/MockData.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000002 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/Comment.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000003 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/Community.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000004 /* IdentityMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/IdentityMode.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000005 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/Post.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000006 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/Profile.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000007 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/User.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000008 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Models/Vote.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000009 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Network/NetworkClient.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Services/AuthService.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000B /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Services/CommunityService.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000C /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Services/FeedService.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000D /* ModerationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Services/ModerationService.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000E /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Services/PostService.swift"; sourceTree = "<group>"; };
+		5AF00100000000000000000F /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Utilities/EnvironmentConfig.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000010 /* HapticFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Utilities/HapticFeedbackService.swift"; sourceTree = "<group>"; };
+		5AF001000000000000000011 /* MediaPrivacyUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gist/Core/Utilities/MediaPrivacyUtilities.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -319,6 +353,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB001000000000000000001 /* MockData.swift in Sources */,
+				5AB001000000000000000002 /* Comment.swift in Sources */,
+				5AB001000000000000000003 /* Community.swift in Sources */,
+				5AB001000000000000000004 /* IdentityMode.swift in Sources */,
+				5AB001000000000000000005 /* Post.swift in Sources */,
+				5AB001000000000000000006 /* Profile.swift in Sources */,
+				5AB001000000000000000007 /* User.swift in Sources */,
+				5AB001000000000000000008 /* Vote.swift in Sources */,
+				5AB001000000000000000009 /* NetworkClient.swift in Sources */,
+				5AB00100000000000000000A /* AuthService.swift in Sources */,
+				5AB00100000000000000000B /* CommunityService.swift in Sources */,
+				5AB00100000000000000000C /* FeedService.swift in Sources */,
+				5AB00100000000000000000D /* ModerationService.swift in Sources */,
+				5AB00100000000000000000E /* PostService.swift in Sources */,
+				5AB00100000000000000000F /* EnvironmentConfig.swift in Sources */,
+				5AB001000000000000000010 /* HapticFeedbackService.swift in Sources */,
+				5AB001000000000000000011 /* MediaPrivacyUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
