@@ -22,13 +22,15 @@ jobs:
       - name: Install tools
         run: |
           brew update
-          brew install swiftlint swiftformat xcpretty
+          brew install swiftlint swiftformat xcbeautify
       - name: Verify tools
         run: |
           echo "PATH=$PATH"
           brew --prefix
           which swiftlint
           swiftlint --version
+          which xcbeautify
+          xcbeautify --version
       - name: SwiftLint
         run: swiftlint --strict
       - name: SwiftFormat (lint only)
@@ -70,8 +72,7 @@ jobs:
             -scheme Gist \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=${{ matrix.ios }}' \
             -enableCodeCoverage YES \
-            -resultBundlePath build/Results/Gist.xcresult \
-            -quiet | xcpretty
+            -resultBundlePath build/Results/Gist.xcresult | xcbeautify
         shell: bash
       - name: Upload coverage to Codecov (Gist)
         uses: codecov/codecov-action@v4
@@ -117,8 +118,7 @@ jobs:
             -scheme GistCore \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=${{ matrix.ios }}' \
             -enableCodeCoverage YES \
-            -resultBundlePath build/Results/GistCore.xcresult \
-            -quiet | xcpretty
+            -resultBundlePath build/Results/GistCore.xcresult | xcbeautify
         shell: bash
       - name: Upload coverage to Codecov (GistCore)
         uses: codecov/codecov-action@v4
