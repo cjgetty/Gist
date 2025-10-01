@@ -39,14 +39,20 @@ final class SmokeFlowTests: XCTestCase {
         tabButton("Discover").tap()
         let nav = app.navigationBars["Discover"]
         XCTAssertTrue(nav.waitForExistence(timeout: 3))
-        let anyCommunity = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Community '")).firstMatch
+        let communityPredicate = NSPredicate(format: "label BEGINSWITH 'Community '")
+        let anyCommunity = app.staticTexts
+            .matching(communityPredicate)
+            .firstMatch
         XCTAssertTrue(anyCommunity.waitForExistence(timeout: 3))
     }
 
     func testCommunityJoinLeaveFlow() {
         tabButton("Discover").tap()
         // Tap the first community row by its visible label "Community <name>"
-        let firstCommunity = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Community '")).firstMatch
+        let firstPredicate = NSPredicate(format: "label BEGINSWITH 'Community '")
+        let firstCommunity = app.staticTexts
+            .matching(firstPredicate)
+            .firstMatch
         XCTAssertTrue(firstCommunity.waitForExistence(timeout: 5))
         firstCommunity.tap()
 
@@ -74,7 +80,10 @@ final class SmokeFlowTests: XCTestCase {
         XCTAssertTrue(homeNav.waitForExistence(timeout: 3))
 
         // Tap any post row (link labeled "Open post: <title>")
-        let anyPost = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Open post:'")).firstMatch
+        let postPredicate = NSPredicate(format: "label BEGINSWITH 'Open post:'")
+        let anyPost = app.buttons
+            .matching(postPredicate)
+            .firstMatch
         XCTAssertTrue(anyPost.waitForExistence(timeout: 5))
         anyPost.tap()
 
@@ -89,7 +98,10 @@ final class SmokeFlowTests: XCTestCase {
         tabButton("Inbox").tap()
         let nav = app.navigationBars["Inbox"]
         XCTAssertTrue(nav.waitForExistence(timeout: 3))
-        let anyNotification = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Notification:'")).firstMatch
+        let notificationPredicate = NSPredicate(format: "label BEGINSWITH 'Notification:'")
+        let anyNotification = app.staticTexts
+            .matching(notificationPredicate)
+            .firstMatch
         XCTAssertTrue(anyNotification.waitForExistence(timeout: 3))
     }
 
@@ -109,7 +121,7 @@ final class SmokeFlowTests: XCTestCase {
         bio.typeText(" Hello world")
 
         // Basic assertion: fields contain what we typed (substring check)
-        XCTAssertTrue(displayName.value as? String != nil)
-        XCTAssertTrue(bio.value as? String != nil)
+        XCTAssertTrue(displayName.value is String)
+        XCTAssertTrue(bio.value is String)
     }
 }
