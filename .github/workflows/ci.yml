@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: Lint & Format Check
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache Homebrew bottles
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+          key: brew-${{ runner.os }}-${{ hashFiles('.github/workflows/ci.yml') }}
+      - name: Install tools
+        run: |
+          brew update
+          brew install swiftlint swiftformat xcbeautify
+      - name: Verify tools
+        run: |
+          echo "PATH=$PATH"
+          brew --prefix
+          which swiftlint
+          swiftlint --version
+          which xcbeautify
+          xcbeautify --version
+      - name: SwiftLint
+        run: swiftlint --strict
+      - name: SwiftFormat (lint only)
+        run: swiftformat . --lint --swiftversion 5.9
+
+  gist:
+    name: Build & Test (Gist) - iOS ${{ matrix.ios }}
+    runs-on: macos-latest
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        ios: ["latest"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Cache SwiftPM
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/.swiftpm
+          key: swiftpm-${{ runner.os }}-${{ matrix.ios }}-${{ hashFiles('**/Package.resolved') }}
+      - name: Cache DerivedData
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+          key: deriveddata-${{ runner.os }}-${{ matrix.ios }}-${{ hashFiles('**/*.swift', '**/*.xcodeproj/**', '**/Package.resolved') }}
+      - name: Build & Test (Simulator)
+        run: |
+          mkdir -p build/Results
+          xcodebuild test \
+            -project Gist.xcodeproj \
+            -scheme Gist \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -enableCodeCoverage YES \
+            -resultBundlePath build/Results/Gist.xcresult | xcbeautify
+        shell: bash
+      - name: Upload coverage to Codecov (Gist)
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/Results/Gist.xcresult
+          flags: gist
+          fail_ci_if_error: true
+
+  gistcore:
+    name: Build (GistCore) - iOS ${{ matrix.ios }}
+    runs-on: macos-latest
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        ios: ["latest"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Cache SwiftPM
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/.swiftpm
+          key: swiftpm-${{ runner.os }}-${{ matrix.ios }}-${{ hashFiles('**/Package.resolved') }}
+      - name: Cache DerivedData
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+          key: deriveddata-${{ runner.os }}-${{ matrix.ios }}-${{ hashFiles('**/*.swift', '**/*.xcodeproj/**', '**/Package.resolved') }}
+      - name: Build & Test (Simulator)
+        run: |
+          mkdir -p build/Results
+          xcodebuild test \
+            -project Gist.xcodeproj \
+            -scheme GistCore \
+            -destination 'generic/platform=iOS Simulator' \
+            -sdk iphonesimulator \
+            -destination-timeout 120 \
+            -only-testing:none \
+            build | xcbeautify
+        shell: bash
+      # No tests/coverage for GistCore framework build

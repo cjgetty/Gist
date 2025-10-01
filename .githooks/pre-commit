@@ -1,0 +1,22 @@
+#!/bin/sh
+# Pre-commit hook: format and lint Swift code
+# Requires: swiftformat, swiftlint
+
+echo "Running SwiftFormat..."
+if command -v swiftformat >/dev/null 2>&1; then
+  swiftformat .
+else
+  echo "SwiftFormat not installed; skipping."
+fi
+
+echo "Running SwiftLint (autocorrect)..."
+if command -v swiftlint >/dev/null 2>&1; then
+  swiftlint --fix --quiet || true
+else
+  echo "SwiftLint not installed; skipping."
+fi
+
+# Re-add potential changes
+git add -A
+
+echo "Pre-commit checks complete."

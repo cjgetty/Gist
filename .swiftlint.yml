@@ -1,0 +1,29 @@
+disabled_rules:
+  - trailing_whitespace
+  - identifier_name # allow short names like id
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+  - closure_end_indentation
+  - vertical_parameter_alignment_on_call
+
+line_length:
+  warning: 100
+  ignores_comments: true
+  ignores_urls: true
+
+force_cast: error
+force_try: error
+force_unwrapping: error
+
+identifier_name:
+  min_length:
+    warning: 2
+  allowed_symbols: _
+
+nesting:
+  type_level:
+    warning: 3
+
+reporter: "xcode"
