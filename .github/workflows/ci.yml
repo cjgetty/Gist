@@ -22,7 +22,13 @@ jobs:
       - name: Install tools
         run: |
           brew update
-          brew install swiftlint swiftformat xcpretty || true
+          brew install swiftlint swiftformat xcpretty
+      - name: Verify tools
+        run: |
+          echo "PATH=$PATH"
+          brew --prefix
+          which swiftlint
+          swiftlint --version
       - name: SwiftLint
         run: swiftlint --strict
       - name: SwiftFormat (lint only)
