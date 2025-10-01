@@ -1,5 +1,5 @@
-import SwiftUI
 import GistCore
+import SwiftUI
 
 public struct PostDetailView: View {
     public let post: Post

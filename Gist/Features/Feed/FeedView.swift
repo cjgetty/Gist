@@ -1,5 +1,5 @@
-import SwiftUI
 import GistCore
+import SwiftUI
 
 public struct FeedView: View {
     @StateObject private var viewModel = FeedViewModel()
